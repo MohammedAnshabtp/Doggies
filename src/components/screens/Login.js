@@ -4,6 +4,7 @@ import { Link , useHistory} from "react-router-dom";
 import axios from 'axios';
 import puppy from '../assets/images/puppy.png';
 import { BASE_URL } from "../../axiosConfig";
+import {Helmet} from "react-helmet";
 
 export default function Login() {
     const[username,setUsername]=useState("");
@@ -30,7 +31,12 @@ export default function Login() {
         })
        
     };
-    return (       
+    return (  
+        <> 
+        <Helmet>
+            <title>Doggies | Login</title>
+            <meta name="Doggies" content="Login" />
+        </Helmet>    
         <Container>
             <LeftContainer>
                 <HeaderContainer>
@@ -69,6 +75,7 @@ export default function Login() {
                 </LoginContainer>
             </RightContainer>
         </Container>
+        </>
     );
 }
 

@@ -2,12 +2,18 @@ import React from 'react';
 import Navbar from './Navbar';
 import styled from "styled-components";
 import Silder from './Silder';
+import {Helmet} from "react-helmet";
 
 
 
 export default function Dogs() {
     return (
         <>
+        <Helmet>
+            <title>Doggies | Dogs</title>
+            <meta name="Doggies" content="Dogs" />
+        </Helmet> 
+
             <HeaderBox>
                 <Navbar/>
             </HeaderBox>

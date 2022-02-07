@@ -4,6 +4,7 @@ import Axios from "axios";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from'react-bootstrap/Dropdown';
+import {Helmet} from "react-helmet";
 function Search() {
     const [breed, setBreed] = useState([]);
     useEffect(() => {
@@ -19,6 +20,10 @@ function Search() {
     },);
     return (
         <>
+         <Helmet>
+            <title>Doggies | Search</title>
+            <meta name="Doggies" content="Search" />
+        </Helmet>
             <Navbar />
             <Spotlight>
                 <LeftColumn>

@@ -4,6 +4,7 @@ import { Link,useHistory } from "react-router-dom";
 import axios from'axios';
 import puppy from '../assets/images/puppy.png';
 import { BASE_URL } from "../../axiosConfig";
+import {Helmet} from "react-helmet";
 
 export default function Signup() {
     const[name,setName]=useState("");
@@ -34,12 +35,17 @@ export default function Signup() {
         })
         .catch((error)=>{
             console.error(error.response.status);
-            if(error.reponse.status === 401){
+            if(error.response.status === 401){
                 setMessage(error.response.data.detail);
             }
         });
     };
     return (
+        <>
+         <Helmet>
+            <title>Doggies | Signup</title>
+            <meta name="Doggies" content="Signup" />
+        </Helmet>
         <Container>
             <LeftContainer>
                 <HeaderContainer>
@@ -87,6 +93,7 @@ export default function Signup() {
                 </LoginContainer>
             </RightContainer>
         </Container>
+        </>
     );
 }
 

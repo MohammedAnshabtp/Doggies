@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { Zoom } from "react-slideshow-image";
 import 'react-slideshow-image/dist/styles.css';
 import  Navbar from'./Navbar.js';
+import {Helmet} from "react-helmet";
 
 
 export default function Breeds() {
@@ -71,14 +72,18 @@ console.log(selectedOption)
                   <BreedIndex>{item.id}</BreedIndex>  
                   <BreedBehave>{item.temperament}</BreedBehave>
                   <BreedPLace>{item.origin}</BreedPLace>
-                  <BreedWeight>kg</BreedWeight>
-                  <BreedMetric>cm at the withers</BreedMetric>
+                  <BreedWeight>{item.weight}kg</BreedWeight>
+                  <BreedMetric>{item.height}cm at the withers</BreedMetric>
                   <BreedLifeSpan>{item.life_span} years average life span</BreedLifeSpan> 
               </BreedDetails>
             ));
           };
     return (
         <>
+        <Helmet>
+            <title>Doggies | Breeds</title>
+            <meta name="Doggies" content="Breeds" />
+        </Helmet>
         <div>
             <Navbar/>
         </div>
@@ -161,7 +166,7 @@ const ListItem = styled.li`
     margin-bottom:0.8em;
     cursor : pointer;
     &:hover{
-      
+
     }
 `;
 const ImageContainer=styled.div`

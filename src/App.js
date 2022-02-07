@@ -17,7 +17,7 @@ function App() {
   return (
     <>
     <Router>
-    <Route path ="/" exact component={Login}/>
+    <PrivateRoute path ="/" exact component={Login}/>
             <Switch>
                 <Route path ="/dogs" component={Dogs}/>
                 <Route path="/breeds"  component={Breeds}/>
@@ -25,7 +25,7 @@ function App() {
                 <Route path ="/search" component={Search}/>
                 <Route path="/uploads" component={Uploads}/>
                 <Route path ="/login" component={Login}/>
-                <PrivateRoute path ="/signup" component={Signup}/>
+                <Route path ="/signup" component={Signup}/>
             </Switch>
     </Router>
     </>

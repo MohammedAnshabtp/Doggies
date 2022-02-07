@@ -7,6 +7,7 @@ import 'react-slideshow-image/dist/styles.css';
 import Like from '../assets/images/likee.jpg';
 import Dislike from '../assets/images/dilike.png';
 import Fav from '../assets/images/fav.png';
+import {Helmet} from "react-helmet";
 
 
 export default function Gallery() {
@@ -48,9 +49,12 @@ const Slideshow = () => {
 
     return (
         <>
+        <Helmet>
+            <title>Doggies | Gallery</title>
+            <meta name="Doggies" content="Gallery" />
+        </Helmet>
             <div>
-                <Navbar/>
-            
+                <Navbar/>          
             </div>
             <GalleryContaineer>  
                 <GalleryImageItem>             

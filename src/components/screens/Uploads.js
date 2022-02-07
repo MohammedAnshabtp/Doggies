@@ -1,11 +1,16 @@
 import React from 'react'
 import Navbar from './Navbar';
 import styled from 'styled-components';
-import Upload from '../assets/images/Upload.png'
+import Upload from '../assets/images/Upload.png';
+import {Helmet} from "react-helmet";
 
 export default function Uploads() {
     return (
         <>
+         <Helmet>
+            <title>Doggies | Uploads</title>
+            <meta name="Doggies" content="Uploads" />
+        </Helmet>
         <div>
             <Navbar/>
         </div>
