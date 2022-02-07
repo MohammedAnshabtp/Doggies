@@ -2,7 +2,6 @@ import React from 'react';
 import Navbar from './Navbar';
 import styled from "styled-components";
 import Silder from './Silder';
-import { AiFillYoutube } from "react-icons/ai";
 
 
 
@@ -23,12 +22,6 @@ export default function Dogs() {
                         They’re like family to us, and why not celebrate it? Here are great quotes about man’s best friend.</Paragraph>
                 </ContentArea>
                 </Main>
-            <FooterSection>
-                <RightSide>
-                    <MediaList><span><AiFillYoutube/></span></MediaList>
-                </RightSide>
-                <LeftSide></LeftSide>
-            </FooterSection>
         </>
     );
 }
@@ -65,17 +58,3 @@ const Paragraph =styled.p`
     line-height:1.6rem;
     text-align:left;
 `;
-const FooterSection = styled.div`
-    width:100%;
-    background:#fff;
-    margin:0 auto;
-    padding:5px;
-`;
-const RightSide = styled.div`
-    width:20%;
-`;
-const MediaList = styled.ul`
-    display:flex;
-    justify-content:space-between;
-`;
-const LeftSide = styled.div``;
