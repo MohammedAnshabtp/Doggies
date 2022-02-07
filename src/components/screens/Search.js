@@ -4,7 +4,6 @@ import Axios from "axios";
 import styled from "styled-components";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Dropdown from'react-bootstrap/Dropdown';
-import { DropdownButton } from "react-bootstrap";
 function Search() {
     const [breed, setBreed] = useState([]);
     useEffect(() => {
@@ -17,7 +16,7 @@ function Search() {
             .catch(function(error){
                 console.log("error");
             });
-    },[]);
+    },);
     return (
         <>
             <Navbar />

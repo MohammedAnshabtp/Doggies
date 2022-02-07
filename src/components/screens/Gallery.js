@@ -31,7 +31,7 @@ useEffect(() => {
         .catch(function(error){
             console.log(error);
         });
-},[]);
+},);
 const Slideshow = () => {
     return (
       <div className="slide-container">

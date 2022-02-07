@@ -10,31 +10,27 @@ export default function Breeds() {
  const [breeds, setBreeds] = useState([]);
  const [beds,setBeds]=useState([]);
  const [isOpen, setIsOpen] = useState(false);
- const [selectedOption, setSelectedOption] = useState('');
- const [breedData,setBreedData]=useState({})
+ const [selectedOption, setSelectedOption] = useState("");
+ const [breedData,setBreedData]=useState({});
+ const [oneto,setOneto]=useState([]);
  const ZoomOutProperties = {
     duration: 5000,
     transitionDuration: 500,
     infinite: true,
     indicators: true,
     scale: 0.4,
-    arrows: true
+    arrows: true,
   };
 
  const toggling = () => setIsOpen(!isOpen);
 
-//  const onOptionClicked = (breed) => {
-//     setSelectedOption(breed);
-//     setIsOpen(false);
-//     console.log(selectedOption);
-//   };
 console.log(breedData);
 console.log(selectedOption)
     useEffect(() =>{
         axios.get("https://api.thedogapi.com/v1/breeds")
             .then((response)=>{
                 setBeds(response.data);
-                setBreeds(response.data);
+                setBreeds(response.data,".......");
                 console.log(response.data)
               
             })
@@ -57,13 +53,30 @@ console.log(selectedOption)
             );
           };
           useEffect(()=>{
-            axios.get(`https://api.TheDogAPI.com/v1/images/search?breed_ids=${selectedOption}`).then(function(response){
-                console.log(response.data);
+            axios.get(`https://api.TheDogAPI.com/v1/images/search?breed_ids=${selectedOption}`)
+            .then(function(response){
                 setBreedData(response.data);
-                // console.log(response.data.id);
-            })
-          },[selectedOption])
+                console.log(setBreedData);
+                breedData.map((item)=>(
+                setOneto(item.breeds)
+            ))
+            });
+          },[selectedOption]);
+          console.log(oneto);
           console.log(breedData);
+          const getSelected = ()=>{
+            return oneto.map((item)=>(
+              <BreedDetails>
+                  <BreedName>{item.name}</BreedName>
+                  <BreedIndex>{item.id}</BreedIndex>  
+                  <BreedBehave>{item.temperament}</BreedBehave>
+                  <BreedPLace>{item.origin}</BreedPLace>
+                  <BreedWeight>kg</BreedWeight>
+                  <BreedMetric>cm at the withers</BreedMetric>
+                  <BreedLifeSpan>{item.life_span} years average life span</BreedLifeSpan> 
+              </BreedDetails>
+            ));
+          };
     return (
         <>
         <div>
@@ -72,45 +85,32 @@ console.log(selectedOption)
                 <Hed>Find the Breeds here....</Hed>
                 <DropDownContainer>
                     <DropDownHeader onClick={toggling}>
-                      {/* {selectedOption || "Breeds"} */}
-                      breeds
+                      Breeds
                       </DropDownHeader>
                     {isOpen && (
                     <DropDownListContainer>
                         <DropDownList>
-                            {/* {breeds.map(breed => (
-                                <ListItem onClick={(breed)=>{setSelectedOption(breed.id);setIsOpen(false);}}
-                                //  key={Math.random()}
-                                 >
-                                    {breed.name}
-                                </ListItem>
-                            ))} */}
-                            {
-                              breeds.map(breed=>(
-                                <ListItem onClick={()=>{setSelectedOption(breed.id)}}>{breed.name}</ListItem>
-                              ))
-                            }
+                            
+                            {breeds.map((breed)=>(
+                              <ListItem onClick={()=>
+                                {setSelectedOption(breed.id);
+                              }}
+                              >
+                                {breed.name}
+                              </ListItem>
+                            ))}
                         </DropDownList>
                     </DropDownListContainer>
                     )}
                 </DropDownContainer>
                 <ImageContainer>
-                    <ImageSilde>
-                            <Slide/>
-                    </ImageSilde>
-                    <BreedDetails>
-                          <BreedName>American Bully</BreedName>
-                          <BreedIndex>id:11</BreedIndex>  
-                          <BreedBehave>Strong Willed, Stubborn, Friendly, Clownish, Affectionate, Loyal, Obedient, Intelligent, Courageous</BreedBehave>
-                          <BreedPLace>United States</BreedPLace>
-                          <BreedWeight>14 - 68 kgs</BreedWeight>
-                          <BreedMetric>36 - 43 cm at the withers</BreedMetric>
-                          <BreedLifeSpan>8 – 15 years average life span</BreedLifeSpan> 
-                    </BreedDetails>
-                    </ImageContainer>
-               
-        </>
-    );
+                    <ImageSilders>
+                        <Slide/>
+                    </ImageSilders>
+                    {getSelected()}
+                    </ImageContainer>              
+                </>
+          );
 }
 const Hed =styled.h1`
     text-align:center;
@@ -131,6 +131,7 @@ const DropDownHeader = styled.div`
     color:#3faffa;
     background:#fff;
     margin-left:-100%;
+    cursor: pointer;
 `;
 const DropDownListContainer = styled.div`
 
@@ -142,7 +143,7 @@ const DropDownList =styled.ul`
     text-align:center;
     padding-left:1em;
     background:#fff;
-    border:2px soild #e5e5e5;
+    border:2px solid #e5e5e5;
     box-sizing:border-box;
     color: #3f3f3f;
     font-size:1.3rem;
@@ -158,6 +159,10 @@ const DropDownList =styled.ul`
 const ListItem = styled.li`
     list-style:none;
     margin-bottom:0.8em;
+    cursor : pointer;
+    &:hover{
+      
+    }
 `;
 const ImageContainer=styled.div`
     border:2px solid #fff;
@@ -168,14 +173,13 @@ const ImageContainer=styled.div`
     box-shadow: 20px 15px 20px 15px rgba(0, 0, 0, 0.4);
     background-color:#fff;
 `;
-const ImageSilde = styled.div`
+const ImageSilders = styled.div`
     width:100%;
     margin:0 auto;
     padding:10px;
 `;
 const BreedDetails =styled.ul`
-    box-shadow: -2px -2px 18px 0 rgba(0, 0, 0, 0.4);
-    
+    box-shadow: -2px -2px 18px 0 rgba(0, 0, 0, 0.4);   
     margin:0 auto;
     text-align: center;
     font-family: arial;
