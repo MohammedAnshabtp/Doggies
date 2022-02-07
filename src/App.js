@@ -7,6 +7,7 @@ import Search from './components/screens/Search';
 import Uploads from './components/screens/Uploads';
 import Login from './components/screens/Login';
 import Signup from './components/screens/Signup';
+import PrivateRoute from './components/screens/PrivateRoute';
 
 
 
@@ -16,14 +17,15 @@ function App() {
   return (
     <>
     <Router>
-       <Route path="/" exact component={Dogs}/>
+    <Route path ="/" exact component={Login}/>
             <Switch>
+                <Route path ="/dogs" component={Dogs}/>
                 <Route path="/breeds"  component={Breeds}/>
                 <Route path="/gallery" component={Gallery}/>
                 <Route path ="/search" component={Search}/>
                 <Route path="/uploads" component={Uploads}/>
                 <Route path ="/login" component={Login}/>
-                <Route path ="/signup" component={Signup}/>
+                <PrivateRoute path ="/signup" component={Signup}/>
             </Switch>
     </Router>
     </>

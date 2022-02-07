@@ -10,7 +10,7 @@ export default function Navbar() {
       <HeaderContainer>
         <Logo src={puppy} alt="Logo" />
         <RightContainer>
-          <LoginButton to="/login">Login</LoginButton>
+          <LoginButton to="/login">Logout</LoginButton>
         </RightContainer>
       </HeaderContainer>
       <Main>

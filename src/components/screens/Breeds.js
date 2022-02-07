@@ -10,7 +10,8 @@ export default function Breeds() {
  const [breeds, setBreeds] = useState([]);
  const [beds,setBeds]=useState([]);
  const [isOpen, setIsOpen] = useState(false);
- const [selectedOption, setSelectedOption] = useState(null);
+ const [selectedOption, setSelectedOption] = useState('');
+ const [breedData,setBreedData]=useState({})
  const ZoomOutProperties = {
     duration: 5000,
     transitionDuration: 500,
@@ -22,11 +23,13 @@ export default function Breeds() {
 
  const toggling = () => setIsOpen(!isOpen);
 
- const onOptionClicked = value => () => {
-    setSelectedOption(value);
-    setIsOpen(false);
-    console.log(selectedOption);
-  };
+//  const onOptionClicked = (breed) => {
+//     setSelectedOption(breed);
+//     setIsOpen(false);
+//     console.log(selectedOption);
+//   };
+console.log(breedData);
+console.log(selectedOption)
     useEffect(() =>{
         axios.get("https://api.thedogapi.com/v1/breeds")
             .then((response)=>{
@@ -40,6 +43,7 @@ export default function Breeds() {
             });
           
         },[] );
+        console.log(selectedOption);
         const Slide = () => {
             return (
               <div className="slide-container">
@@ -52,6 +56,14 @@ export default function Breeds() {
               </div>
             );
           };
+          useEffect(()=>{
+            axios.get(`https://api.TheDogAPI.com/v1/images/search?breed_ids=${selectedOption}`).then(function(response){
+                console.log(response.data);
+                setBreedData(response.data);
+                // console.log(response.data.id);
+            })
+          },[selectedOption])
+          console.log(breedData);
     return (
         <>
         <div>
@@ -59,15 +71,25 @@ export default function Breeds() {
         </div>
                 <Hed>Find the Breeds here....</Hed>
                 <DropDownContainer>
-                    <DropDownHeader onClick={toggling}>{selectedOption || "Breeds"}</DropDownHeader>
+                    <DropDownHeader onClick={toggling}>
+                      {/* {selectedOption || "Breeds"} */}
+                      breeds
+                      </DropDownHeader>
                     {isOpen && (
                     <DropDownListContainer>
                         <DropDownList>
-                            {breeds.map(breed => (
-                                <ListItem onClick={onOptionClicked(breed)} key={Math.random()}>
+                            {/* {breeds.map(breed => (
+                                <ListItem onClick={(breed)=>{setSelectedOption(breed.id);setIsOpen(false);}}
+                                //  key={Math.random()}
+                                 >
                                     {breed.name}
                                 </ListItem>
-                            ))}
+                            ))} */}
+                            {
+                              breeds.map(breed=>(
+                                <ListItem onClick={()=>{setSelectedOption(breed.id)}}>{breed.name}</ListItem>
+                              ))
+                            }
                         </DropDownList>
                     </DropDownListContainer>
                     )}

@@ -26,7 +26,7 @@ export default function Signup() {
             if(status_code === 6000){
                 console.log(response.data);
                 localStorage.setItem("user_data",JSON.stringify(data));
-                history.push("/");
+                history.push("/dogs");
             }else{
                 setMessage(response.data.message);
             }

@@ -21,7 +21,7 @@ export default function Login() {
             let data = response.data;
             console.log(data)
             localStorage.setItem("user_data",JSON.stringify(data));
-            history.push("/");
+            history.push("/dogs");
            
         })
         .catch((error)=>{
