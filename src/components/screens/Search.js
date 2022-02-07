@@ -7,6 +7,7 @@ import Dropdown from'react-bootstrap/Dropdown';
 import {Helmet} from "react-helmet";
 function Search() {
     const [breed, setBreed] = useState([]);
+    const[animate,setAnimate]=useState([]);
     useEffect(() => {
         var URL = "https://api.thedogapi.com/v1/breeds";
         Axios.get(URL)
@@ -17,7 +18,16 @@ function Search() {
             .catch(function(error){
                 console.log("error");
             });
-    },);
+    },[]);
+
+    useEffect(()=>{
+        var URL = " https://api.thedogapi.com/images/search?mime_types=gif";
+        Axios.get(URL)
+        .then((response)=>{
+            setAnimate(response.data);
+            console.log(animate);
+        })
+    },[])
     return (
         <>
          <Helmet>
@@ -47,7 +57,10 @@ function Search() {
                     <Dropdown.Menu variant="dark">
                     <Dropdown.Item href="#/action-2">All</Dropdown.Item>
                     <Dropdown.Item href="#/action-3">Static</Dropdown.Item>
-                    <Dropdown.Item href="#/action-4">Animated</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1" active>
+                      Animate
+                    </Dropdown.Item>
+                    {/* {animate.map((item)=>(<Dropdown.Item href="#/action-4">{item.gif}</Dropdown.Item>))} */}
                     </Dropdown.Menu>
             </Dropdown>         
              <Dropdown>

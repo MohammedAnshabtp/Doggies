@@ -10,7 +10,7 @@ export default function Dogs() {
     return (
         <>
         <Helmet>
-            <title>Doggies | Dogs</title>
+            <title>Doggies | Home</title>
             <meta name="Doggies" content="Dogs" />
         </Helmet> 
 

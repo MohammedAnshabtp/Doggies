@@ -102,6 +102,11 @@ const LikeBox=styled.div`
     width:100px;
     height:50px;
     margin-right:50px;
+    &:hover{
+        cursor:pointer;
+        opacity:0.8;
+    }
+   
 `;
 const LeftBox=styled.div`
     display:flex;
@@ -114,6 +119,10 @@ const DislikeBox=styled.div`
   
     width:100px;
     height:50px;
+    &:hover{
+        cursor:pointer;
+        opacity:0.8;
+    }
 `;
 const DislikeBtn=styled.img`
     width:130%;
@@ -121,6 +130,10 @@ const DislikeBtn=styled.img`
 const SideBox=styled.div`
     width:80px;
     height:50px;
+    &:hover{
+        cursor:pointer;
+        opacity:0.8;
+    }
   
 `;
 const FavBtn=styled.img`
@@ -128,5 +141,6 @@ const FavBtn=styled.img`
 `;
 const FavBox=styled.div`
     margin-left:50%;
+   
 
 `;
