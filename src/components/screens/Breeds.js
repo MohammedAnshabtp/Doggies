@@ -72,8 +72,8 @@ console.log(selectedOption)
                   <BreedIndex>{item.id}</BreedIndex>  
                   <BreedBehave>{item.temperament}</BreedBehave>
                   <BreedPLace>{item.origin}</BreedPLace>
-                  <BreedWeight>{item.weight}kg</BreedWeight>
-                  <BreedMetric>{item.height}cm at the withers</BreedMetric>
+                  <BreedWeight>{item.weight.metric}kg</BreedWeight>
+                  <BreedMetric>{item.height.metric}cm at the withers</BreedMetric>
                   <BreedLifeSpan>{item.life_span} years average life span</BreedLifeSpan> 
               </BreedDetails>
             ));
@@ -91,14 +91,14 @@ console.log(selectedOption)
                 <DropDownContainer>
                     <DropDownHeader onClick={toggling}>
                       Breeds
-                      </DropDownHeader>
+                    </DropDownHeader>
                     {isOpen && (
                     <DropDownListContainer>
-                        <DropDownList>
-                            
+                        <DropDownList>    
                             {breeds.map((breed)=>(
                               <ListItem onClick={()=>
-                                {setSelectedOption(breed.id);
+                                {
+                                  setSelectedOption(breed.id);
                               }}
                               >
                                 {breed.name}
@@ -109,9 +109,9 @@ console.log(selectedOption)
                     )}
                 </DropDownContainer>
                 <ImageContainer>
-                    <ImageSilders>
+                    <ImageSilder>
                         <Slide/>
-                    </ImageSilders>
+                    </ImageSilder>
                     {getSelected()}
                     </ImageContainer>              
                 </>
@@ -178,7 +178,7 @@ const ImageContainer=styled.div`
     box-shadow: 20px 15px 20px 15px rgba(0, 0, 0, 0.4);
     background-color:#fff;
 `;
-const ImageSilders = styled.div`
+const ImageSilder = styled.div`
     width:100%;
     margin:0 auto;
     padding:10px;
